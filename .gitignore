@@ -1,0 +1,12 @@
+node_modules/
+dist/
+test-results/
+coverage/
+data/
+backups/
+*.log
+*.tgz
+*.tar.gz
+.env
+.DS_Store
+Thumbs.db

@@ -1,0 +1,242 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Stage 1: syntax, lint and documentation integrity
+  # ---------------------------------------------------------------------------
+  lint-and-docs:
+    name: 1. Lint and documentation integrity
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Syntax check every JavaScript file
+        run: find src scripts tests public -name '*.js' -print0 | xargs -0 -n1 node --check
+
+      - name: ESLint (zero warnings allowed)
+        run: npm run lint
+
+      - name: Documentation integrity (SRS / SAD / STP / tests traceability)
+        run: npm run check:docs
+
+  # ---------------------------------------------------------------------------
+  # Stage 2: dependency audit and static application security testing
+  # ---------------------------------------------------------------------------
+  security:
+    name: 2. Security audit and SAST
+    needs: lint-and-docs
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Audit runtime dependencies (fails on moderate or higher)
+        run: npm audit --omit=dev --audit-level=moderate
+
+      - name: Audit development tooling (fails on high or higher)
+        run: npm audit --audit-level=high
+
+      - name: SAST with ESLint security rules
+        run: npm run sast
+
+      # CodeQL needs GitHub Advanced Security on private repositories, so it
+      # runs only when the repository is public.
+      - name: Initialise CodeQL
+        if: ${{ !github.event.repository.private }}
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+          queries: security-extended
+
+      - name: CodeQL analysis
+        if: ${{ !github.event.repository.private }}
+        uses: github/codeql-action/analyze@v3
+
+  # ---------------------------------------------------------------------------
+  # Stage 3: automated test matrix
+  # ---------------------------------------------------------------------------
+  test:
+    name: 3. Tests (Node ${{ matrix.node-version }})
+    needs: lint-and-docs
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      # Runtime dependencies only: proves the application needs nothing
+      # beyond the Node.js standard library.
+      - name: Install runtime dependencies
+        run: npm ci --omit=dev
+
+      - name: Run all test cases (TC-*)
+        run: |
+          mkdir -p test-results
+          npm run test:ci
+
+      - name: Coverage report
+        if: matrix.node-version == '20.x'
+        run: npm run coverage 2>&1 | tee test-results/coverage.txt
+
+      - name: Write job summary from the actual results
+        if: always()
+        run: node scripts/summarize-tests.js test-results/results.tap >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-node-${{ matrix.node-version }}
+          path: test-results/
+          if-no-files-found: warn
+
+  # ---------------------------------------------------------------------------
+  # Stage 4: build and package the release
+  # ---------------------------------------------------------------------------
+  build:
+    name: 4. Build and package
+    needs: [security, test]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install runtime dependencies
+        run: npm ci --omit=dev
+
+      - name: Build dist/ with BUILD_INFO.json checksums
+        run: npm run build
+
+      - name: Package release tarball
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          tar -czf "itim-${VERSION}-${GITHUB_SHA::7}.tar.gz" -C dist .
+          sha256sum itim-*.tar.gz > SHA256SUMS
+          cat SHA256SUMS
+
+      - name: Upload release bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-bundle
+          path: |
+            itim-*.tar.gz
+            SHA256SUMS
+          retention-days: 30
+
+  # ---------------------------------------------------------------------------
+  # Stage 5: deploy the packaged build to a staging instance and verify it
+  # ---------------------------------------------------------------------------
+  deploy-staging:
+    name: 5. Staging deployment and smoke test
+    needs: build
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      NODE_ENV: production
+      HOST: 127.0.0.1
+      PORT: 8080
+      SCHEDULE_JOBS: 'true'
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Download release bundle
+        uses: actions/download-artifact@v4
+        with:
+          name: release-bundle
+
+      - name: Verify checksum and unpack
+        run: |
+          sha256sum -c SHA256SUMS
+          mkdir staging
+          tar -xzf itim-*.tar.gz -C staging
+          cat staging/BUILD_INFO.json | head -8
+
+      - name: Install runtime dependencies
+        working-directory: staging
+        run: npm ci --omit=dev
+
+      - name: Start service, run smoke test, stop gracefully
+        working-directory: staging
+        run: |
+          # Fresh random secrets for this staging run (production mode refuses to start without them).
+          export JWT_SECRET="$(openssl rand -hex 32)"
+          export LICENSE_KEY_SECRET="$(openssl rand -hex 32)"
+          export AGENT_API_KEY="$(openssl rand -hex 32)"
+          export DEMO_PASSWORD="staging-$(openssl rand -hex 8)"
+          export DATA_FILE="$RUNNER_TEMP/itim-staging.json"
+
+          node src/index.js > "$RUNNER_TEMP/staging.log" 2>&1 &
+          APP_PID=$!
+          # Safety net: never leave the process running if a later command fails.
+          trap 'kill -9 "$APP_PID" 2>/dev/null || true' EXIT
+
+          BASE_URL="http://$HOST:$PORT" node scripts/smoke.js
+
+          kill -TERM "$APP_PID"
+          set +e
+          wait "$APP_PID"
+          STATUS=$?
+          set -e
+          trap - EXIT
+          echo "Service exited with status $STATUS after SIGTERM"
+          test "$STATUS" -eq 0
+          test -s "$DATA_FILE"
+          echo "Graceful shutdown verified and data persisted to $DATA_FILE"
+
+      - name: Upload staging log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: staging-log
+          path: ${{ runner.temp }}/staging.log
+          if-no-files-found: warn

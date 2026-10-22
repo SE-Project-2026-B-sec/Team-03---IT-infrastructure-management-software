@@ -1,0 +1,41 @@
+{
+  "name": "it-infrastructure-management-software",
+  "version": "1.0.0",
+  "description": "IT Infrastructure Management Software: hardware asset lifecycle, software license compliance, endpoint auditing and procurement workflow (Team 03, SE Project 2026, Section B).",
+  "main": "src/app.js",
+  "private": true,
+  "engines": {
+    "node": ">=18.18"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "demo": "node scripts/demo.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --test",
+    "test:ci": "node --test --test-reporter=spec --test-reporter-destination=stdout --test-reporter=tap --test-reporter-destination=test-results/results.tap",
+    "coverage": "node --test --experimental-test-coverage",
+    "lint": "eslint --max-warnings 0 .",
+    "sast": "eslint --max-warnings 0 --config eslint.security.config.js src scripts",
+    "check:docs": "node scripts/check-docs.js",
+    "build": "node scripts/build.js",
+    "smoke": "node scripts/smoke.js",
+    "backup": "node scripts/backup.js",
+    "restore": "node scripts/restore.js"
+  },
+  "keywords": [
+    "itam",
+    "cmdb",
+    "license-compliance",
+    "hardware-asset-management",
+    "procurement",
+    "software-engineering"
+  ],
+  "author": "Team 03 - SE Project 2026 (Section B)",
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "eslint": "9.39.5",
+    "eslint-plugin-security": "4.2.0",
+    "globals": "17.13.0"
+  }
+}

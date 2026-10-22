@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="IT Infrastructure Management: hardware assets, software licenses, compliance and procurement.">
+  <title>IT Infrastructure Management</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="brand-gradient" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#7c6cff"/>
+        <stop offset="1" stop-color="#c084fc"/>
+      </linearGradient>
+    </defs>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.8"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.8"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.8"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.8"/></symbol>
+    <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="4" y="4.5" width="16" height="11" rx="1.8"/><path d="M2 19.5h20"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M10.9 12.1 20 3M16 7l3 3M13.5 9.5l2 2"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.3 10.6a1.6 1.6 0 0 0 1.6 1.3h8.4a1.6 1.6 0 0 0 1.6-1.2L21 8H6.1"/><circle cx="9.5" cy="19.5" r="1.3"/><circle cx="17.5" cy="19.5" r="1.3"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 19 6v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6l7-3Z"/><path d="m9 12 2.2 2.2L15.5 10"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 1 1 12 0v5l1.5 2h-15L6 16Z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z"/></symbol>
+    <symbol id="i-logout" viewBox="0 0 24 24"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3"/><path d="m10 16-4-4 4-4M6 12h10"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3.5 21.5 20h-19L12 3.5Z"/><path d="M12 10v4M12 17.2v.1"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.8v.1"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.6-4.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.6 4.5L20 16M20 20v-4h-4"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5"/></symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+    <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M3 3l18 18M10.6 6.1A10 10 0 0 1 12 6c6.5 0 10 6 10 6a17 17 0 0 1-3 3.8M6.5 7.6C3.7 9.4 2 12 2 12s3.5 6 10 6c1.6 0 3-.3 4.3-1M9.9 9.9a3 3 0 0 0 4.2 4.2"/></symbol>
+    <symbol id="i-barcode" viewBox="0 0 24 24"><path d="M4 6v12M7 6v12M10 6v12M13.5 6v12M16 6v12M20 6v12"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5v-9Z"/><path d="m3 7.5 9 4.5 9-4.5M12 12v9"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M15 4a5 5 0 0 0-4.6 6.9L4 17.3V20h2.7l6.4-6.4A5 5 0 0 0 20 9l-3 1-2-2 1-3Z"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></symbol>
+    <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.8"/><path d="M9 20h6M12 16v4"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/></symbol>
+  </svg>
+
+  <div id="status" class="toast-region" role="status" aria-live="polite"></div>
+
+  <!-- ===================== Sign-in ===================== -->
+  <div id="login-section" class="auth">
+    <section class="auth-brand" aria-labelledby="brand-heading">
+      <div class="auth-brand-inner">
+        <div class="brand">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="url(#brand-gradient)"/><path d="m16 7 8 4.5-8 4.5-8-4.5L16 7Z" fill="#ffffff"/><path d="m8 16.2 8 4.5 8-4.5M8 20.7l8 4.5 8-4.5" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.75"/></svg>
+          <span class="brand-name">ITIM<span>Infrastructure Management</span></span>
+        </div>
+        <h1 id="brand-heading">Every device, license and purchase. Accounted for.</h1>
+        <p class="auth-lede">One workspace for the IT team to tag hardware, keep software licenses compliant and move purchases through approval, with an audit trail nobody can quietly rewrite.</p>
+        <ul class="auth-features">
+          <li><span class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-barcode"/></svg></span><span><strong>Barcode-tagged lifecycle</strong>From delivery to certified disposal</span></li>
+          <li><span class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-key"/></svg></span><span><strong>Seat-accurate licensing</strong>Over-allocation is impossible by design</span></li>
+          <li><span class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span><span><strong>Continuous compliance</strong>Endpoint scans reconcile every install</span></li>
+          <li><span class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg></span><span><strong>Tamper-evident audit</strong>Every action hash-chained and verifiable</span></li>
+        </ul>
+        <p class="auth-foot">Team 03 &middot; SE Project 2026 &middot; Section B</p>
+      </div>
+    </section>
+
+    <section class="auth-panel" aria-labelledby="login-heading">
+      <div class="auth-card">
+        <h2 id="login-heading">Welcome back</h2>
+        <p class="auth-sub">Sign in to your workspace</p>
+        <form id="login-form" class="form-stack" novalidate>
+          <div class="field">
+            <label for="username">Username</label>
+            <input id="username" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="input-affix">
+              <input id="password" name="password" type="password" autocomplete="current-password" required>
+              <button type="button" id="toggle-password" class="affix-btn" aria-label="Show password" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-eye"/></svg></button>
+            </div>
+          </div>
+          <button type="submit" id="login-submit" class="btn btn-primary btn-block">Sign in</button>
+        </form>
+        <div class="demo-accounts">
+          <h3>Demo accounts</h3>
+          <p>Pick a role to fill the username. The demo password is listed in the README.</p>
+          <div id="demo-roles" class="demo-grid"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===================== Application ===================== -->
+  <div id="app" class="shell" hidden>
+    <aside id="sidebar" class="sidebar">
+      <div class="brand">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="url(#brand-gradient)"/><path d="m16 7 8 4.5-8 4.5-8-4.5L16 7Z" fill="#ffffff"/><path d="m8 16.2 8 4.5 8-4.5M8 20.7l8 4.5 8-4.5" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.75"/></svg>
+        <span class="brand-name">ITIM<span>Infrastructure Management</span></span>
+      </div>
+      <nav aria-label="Primary">
+        <p class="nav-label">Workspace</p>
+        <ul id="nav" class="nav"></ul>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-card">
+          <span id="user-avatar" class="avatar" aria-hidden="true"></span>
+          <span class="user-meta"><span id="session-user" class="user-name"></span><span id="session-role" class="user-role"></span></span>
+          <button type="button" id="logout" class="icon-btn" aria-label="Sign out"><svg class="icon" aria-hidden="true"><use href="#i-logout"/></svg></button>
+        </div>
+      </div>
+    </aside>
+    <div id="nav-backdrop" class="nav-backdrop" hidden></div>
+
+    <div class="main-col">
+      <header class="topbar">
+        <button type="button" id="menu-toggle" class="icon-btn menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
+        <div class="page-heading">
+          <p id="page-eyebrow" class="eyebrow">Workspace</p>
+          <h1 id="page-title">Overview</h1>
+        </div>
+        <form id="scan-form" class="search" role="search">
+          <label for="scan-tag">Find an asset by tag</label>
+          <svg class="icon search-icon" aria-hidden="true"><use href="#i-search"/></svg>
+          <input id="scan-tag" name="tag" autocomplete="off" spellcheck="false" placeholder="Search or scan an asset tag">
+          <kbd class="search-kbd" aria-hidden="true">/</kbd>
+        </form>
+        <div class="topbar-actions">
+          <button type="button" id="theme-toggle" class="icon-btn" aria-label="Switch to dark theme"><svg class="icon" aria-hidden="true"><use id="theme-icon" href="#i-moon"/></svg></button>
+          <a id="alerts-link" class="icon-btn has-dot" href="#/alerts" aria-label="Alerts"><svg class="icon" aria-hidden="true"><use href="#i-bell"/></svg><span id="alerts-dot" class="dot" hidden></span></a>
+        </div>
+      </header>
+
+      <main id="main" tabindex="-1">
+        <section id="view-overview" class="view" aria-label="Overview"></section>
+
+        <section id="view-assets" class="view" aria-label="Hardware assets" hidden>
+          <div class="toolbar">
+            <div class="toolbar-field grow">
+              <label for="asset-search">Search assets</label>
+              <svg class="icon field-icon" aria-hidden="true"><use href="#i-search"/></svg>
+              <input id="asset-search" type="search" placeholder="Search by tag, serial or model" autocomplete="off">
+            </div>
+            <div class="toolbar-field">
+              <label for="asset-status">Status</label>
+              <select id="asset-status">
+                <option value="">All statuses</option>
+                <option value="AVAILABLE">Available</option>
+                <option value="IN_USE">In use</option>
+                <option value="UNDER_REPAIR">Under repair</option>
+                <option value="DECOMMISSIONED">Decommissioned</option>
+              </select>
+            </div>
+            <div class="toolbar-field">
+              <label for="asset-category">Category</label>
+              <select id="asset-category">
+                <option value="">All categories</option>
+                <option value="LAPTOP">Laptop</option>
+                <option value="DESKTOP">Desktop</option>
+                <option value="SERVER">Server</option>
+                <option value="NETWORK">Network</option>
+                <option value="PERIPHERAL">Peripheral</option>
+                <option value="MOBILE">Mobile</option>
+                <option value="OTHER">Other</option>
+              </select>
+            </div>
+            <button type="button" id="register-asset" class="btn btn-primary" hidden>Register asset</button>
+          </div>
+          <div class="card table-card">
+            <div class="table-wrap">
+              <table class="data-table">
+                <caption class="visually-hidden">Hardware assets with tag, device, category, status, assignee and purchase cost</caption>
+                <thead><tr><th scope="col">Tag</th><th scope="col">Device</th><th scope="col">Category</th><th scope="col">Status</th><th scope="col">Assigned to</th><th scope="col" class="num">Cost</th></tr></thead>
+                <tbody id="assets-body"></tbody>
+              </table>
+            </div>
+            <div id="assets-pager" class="pager"></div>
+          </div>
+        </section>
+
+        <section id="view-licenses" class="view" aria-label="Software licenses" hidden>
+          <div id="license-summary" class="kpi-grid compact"></div>
+          <div class="section-head">
+            <p class="section-note">Seat counts update the moment a seat is allocated or reclaimed.</p>
+            <button type="button" id="add-license" class="btn btn-primary" hidden>Add license</button>
+          </div>
+          <div class="card table-card">
+            <div class="table-wrap">
+              <table class="data-table">
+                <caption class="visually-hidden">Software license pools with type, masked product key, seat utilisation and expiry</caption>
+                <thead><tr><th scope="col">Software</th><th scope="col">Type</th><th scope="col">Product key</th><th scope="col">Seat utilisation</th><th scope="col">Valid until</th></tr></thead>
+                <tbody id="licenses-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section id="view-procurement" class="view" aria-label="Procurement" hidden></section>
+        <section id="view-compliance" class="view" aria-label="Compliance" hidden></section>
+        <section id="view-alerts" class="view" aria-label="Alerts" hidden></section>
+      </main>
+    </div>
+  </div>
+
+  <dialog id="drawer" class="drawer" aria-labelledby="drawer-title"></dialog>
+  <dialog id="modal" class="modal" aria-labelledby="modal-title"></dialog>
+  <div id="tooltip" class="tooltip" role="tooltip" hidden></div>
+</body>
+</html>
