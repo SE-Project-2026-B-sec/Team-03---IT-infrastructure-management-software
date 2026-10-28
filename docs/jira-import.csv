@@ -1,0 +1,777 @@
+Issue Id,Issue Type,Summary,Description,Priority,Story Points,Sprint,Assignee,Epic Name,Epic Link,Labels,Labels,Labels
+1,Epic,Hardware Asset Management,Epic covering the Hardware Asset Management scope of the IT Infrastructure Management Software mini-project.,Medium,,,,Hardware Asset Management,,epic-hardware,,
+2,Epic,Software Licence Management,Epic covering the Software Licence Management scope of the IT Infrastructure Management Software mini-project.,Medium,,,,Software Licence Management,,epic-licensing,,
+3,Epic,Procurement Workflow,Epic covering the Procurement Workflow scope of the IT Infrastructure Management Software mini-project.,Medium,,,,Procurement Workflow,,epic-procurement,,
+4,Epic,"Compliance, Audit and Alerts","Epic covering the Compliance, Audit and Alerts scope of the IT Infrastructure Management Software mini-project.",Medium,,,,"Compliance, Audit and Alerts",,epic-compliance,,
+5,Epic,Maintenance and Decommissioning,Epic covering the Maintenance and Decommissioning scope of the IT Infrastructure Management Software mini-project.,Medium,,,,Maintenance and Decommissioning,,epic-maintenance,,
+6,Epic,Security,Epic covering the Security scope of the IT Infrastructure Management Software mini-project.,Medium,,,,Security,,epic-security,,
+7,Epic,Non-Functional Targets,Epic covering the Non-Functional Targets scope of the IT Infrastructure Management Software mini-project.,Medium,,,,Non-Functional Targets,,epic-nfr,,
+8,Epic,Engineering Infrastructure,Epic covering the Engineering Infrastructure scope of the IT Infrastructure Management Software mini-project.,Medium,,,,Engineering Infrastructure,,epic-devops,,
+9,Story,[US-01] Register a hardware asset,"*As a* IT Administrator, *I want to* register a device with its serial number, warranty and purchase details, *so that* every asset the organisation owns is tracked from the day it arrives.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-01 |
+| Epic | Hardware Asset Management |
+| SRS requirement | {{IT-F-001}} |
+| Story points | 5 |
+| Sprint | Sprint 1 (27 Oct – 31 Oct 2026) |
+| Assigned to | Gaurav Girish (PES1UG24AM103) |
+| Verified by | {{TC-HAM-01}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/1 |
+
+h3. Acceptance criteria
+* A valid request returns 201 with status {{AVAILABLE}}
+* A unique tag {{HW-YYYY-NNNNNN}} is generated when none is supplied
+* A duplicate tag, serial number or MAC address returns 409
+* Invalid data returns 400 and a non-admin role returns 403
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-HAM-01 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",High,5,ITIM Sprint 1,Gaurav Girish,,Hardware Asset Management,epic-hardware,SP-5,sprint-1
+10,Story,[US-02] Check an asset out to an employee and back in,"*As a* IT Technician, *I want to* check an available asset out to an employee and check it back in, *so that* the organisation always knows who is holding which device.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-02 |
+| Epic | Hardware Asset Management |
+| SRS requirement | {{IT-F-002}} |
+| Story points | 5 |
+| Sprint | Sprint 1 (27 Oct – 31 Oct 2026) |
+| Assigned to | Gaurav Girish (PES1UG24AM103) |
+| Verified by | {{TC-HAM-02}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/2 |
+
+h3. Acceptance criteria
+* Check-out sets {{IN_USE}} and records the employee ID
+* Checking out an asset that is not {{AVAILABLE}} returns 409
+* An unknown employee returns 404
+* Check-in restores {{AVAILABLE}} and closes the assignment-history entry
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-HAM-02 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",High,5,ITIM Sprint 1,Gaurav Girish,,Hardware Asset Management,epic-hardware,SP-5,sprint-1
+11,Story,[US-03] Generate and scan barcode labels,"*As a* IT Technician, *I want to* print a Code 128 label for an asset and resolve a scanned tag back to its record, *so that* stock-takes can be done with a scanner instead of by hand.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-03 |
+| Epic | Hardware Asset Management |
+| SRS requirement | {{IT-F-003}} |
+| Story points | 3 |
+| Sprint | Sprint 1 (27 Oct – 31 Oct 2026) |
+| Assigned to | Gaurav Girish (PES1UG24AM103) |
+| Verified by | {{TC-HAM-03}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/3 |
+
+h3. Acceptance criteria
+* The generated SVG label decodes to the asset tag
+* Tag lookup is case-insensitive and returns the asset
+* An unknown tag returns 404
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-HAM-03 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",Medium,3,ITIM Sprint 1,Gaurav Girish,,Hardware Asset Management,epic-hardware,SP-3,sprint-1
+12,Story,[US-04] Calculate asset depreciation (SL and WDV),"*As a* Finance Officer, *I want to* see an asset's book value by straight-line or written-down-value method, *so that* asset values in the IT register agree with the finance ledger.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-04 |
+| Epic | Hardware Asset Management |
+| SRS requirement | {{IT-F-004}} |
+| Story points | 3 |
+| Sprint | Sprint 1 (27 Oct – 31 Oct 2026) |
+| Assigned to | Dhruv Rajagopalan (PES1UG24AM086) |
+| Verified by | {{TC-HAM-04}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/4 |
+
+h3. Acceptance criteria
+* Cost 1200, salvage 200, life 5y, age 2y gives 200/year and book value 800 (SL)
+* WDV at 25% gives 675 for the same asset
+* Book value never falls below salvage
+* A date before purchase, or invalid parameters, returns 400
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-HAM-04 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",Medium,3,ITIM Sprint 1,Dhruv Rajagopalan,,Hardware Asset Management,epic-hardware,SP-3,sprint-1
+13,Story,[US-05] Maintain software licence pools,"*As a* IT Administrator, *I want to* record a licence pool with its seat count, validity and product key, *so that* entitlements are held in one place and keys are never exposed.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-05 |
+| Epic | Software Licence Management |
+| SRS requirement | {{IT-F-005}} |
+| Story points | 5 |
+| Sprint | Sprint 1 (27 Oct – 31 Oct 2026) |
+| Assigned to | Sunay R Hegde (PES1UG24AM903) |
+| Verified by | {{TC-SAM-01}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/5 |
+
+h3. Acceptance criteria
+* A valid request returns 201 with {{availableSeats}} equal to {{totalSeats}}
+* The product key is returned masked and stored encrypted
+* Seat counts that are not positive integers return 400
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-SAM-01 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",High,5,ITIM Sprint 1,Sunay R Hegde,,Software Licence Management,epic-licensing,SP-5,sprint-1
+14,Story,[US-06] Allocate and reclaim licence seats safely,"*As a* IT Technician, *I want to* allocate a licence seat to an asset and reclaim it later, *so that* the organisation never uses more seats than it has bought.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-06 |
+| Epic | Software Licence Management |
+| SRS requirement | {{IT-F-006}} |
+| Story points | 8 |
+| Sprint | Sprint 1 (27 Oct – 31 Oct 2026) |
+| Assigned to | Sunay R Hegde (PES1UG24AM903) |
+| Verified by | {{TC-SAM-02}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/6 |
+
+h3. Acceptance criteria
+* Each allocation decrements the available seat count
+* No seats left, a duplicate allocation, an expired licence or a decommissioned asset returns 409
+* 10 concurrent requests for 3 seats produce exactly 3 allocations
+* Reclaiming a seat returns it to the pool
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-SAM-02 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",High,8,ITIM Sprint 1,Sunay R Hegde,,Software Licence Management,epic-licensing,SP-8,sprint-1
+15,Story,[US-09] Submit a purchase requisition,"*As a* Employee or Manager, *I want to* raise a requisition for hardware or licences with a business justification, *so that* purchases start from a recorded, auditable request.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-09 |
+| Epic | Procurement Workflow |
+| SRS requirement | {{IT-F-009}} |
+| Story points | 3 |
+| Sprint | Sprint 1 (27 Oct – 31 Oct 2026) |
+| Assigned to | Dhruv Rajagopalan (PES1UG24AM086) |
+| Verified by | {{TC-PROC-01}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/7 |
+
+h3. Acceptance criteria
+* A valid request returns 201 with number {{PR-YYYY-NNNN}}, state {{PENDING_MANAGER_APPROVAL}} and the computed total
+* Invalid quantity, cost or justification returns 400
+* Requesters see only their own requisitions and auditors cannot submit
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-PROC-01 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",Medium,3,ITIM Sprint 1,Dhruv Rajagopalan,,Procurement Workflow,epic-procurement,SP-3,sprint-1
+16,Story,[US-15] Log maintenance against an asset,"*As a* IT Technician, *I want to* record repairs, upgrades and inspections with cost and parts, *so that* an asset's service history and running cost are visible before we repair or replace it.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-15 |
+| Epic | Maintenance and Decommissioning |
+| SRS requirement | {{IT-F-015}} |
+| Story points | 3 |
+| Sprint | Sprint 1 (27 Oct – 31 Oct 2026) |
+| Assigned to | Dhruv Rajagopalan (PES1UG24AM086) |
+| Verified by | {{TC-MAINT-01}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/8 |
+
+h3. Acceptance criteria
+* In-place work is recorded as completed and adds its cost to the asset total
+* Out-of-service work requires the asset to be checked in and sets {{UNDER_REPAIR}}
+* An asset {{UNDER_REPAIR}} cannot be checked out
+* Completing the work restores {{AVAILABLE}}
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-MAINT-01 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",Medium,3,ITIM Sprint 1,Dhruv Rajagopalan,,Maintenance and Decommissioning,epic-maintenance,SP-3,sprint-1
+17,Story,[US-17] Serve the API over TLS 1.3 only,"*As a* Information Security Officer, *I want to* the service to accept only TLS 1.3 and redirect plain HTTP, *so that* credentials and asset data are never carried in clear text.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-17 |
+| Epic | Security |
+| SRS requirement | {{PRJ-SR-001}} |
+| Story points | 3 |
+| Sprint | Sprint 1 (27 Oct – 31 Oct 2026) |
+| Assigned to | Dilipan Y (PES1UG24AM092) |
+| Verified by | {{TC-SEC-01}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/9 |
+
+h3. Acceptance criteria
+* A TLS 1.3 client succeeds and receives {{Strict-Transport-Security}}
+* A client limited to TLS 1.2 is refused
+* HTTP requests receive 301 to the HTTPS URL
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-SEC-01 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",Medium,3,ITIM Sprint 1,Dilipan Y,,Security,epic-security,SP-3,sprint-1
+18,Story,[US-18] Authenticate with JWT and enforce RBAC,"*As a* Information Security Officer, *I want to* every endpoint to require a valid short-lived JWT and the caller's role, *so that* only the right people can act on assets, licences and approvals.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-18 |
+| Epic | Security |
+| SRS requirement | {{PRJ-SR-002}} |
+| Story points | 8 |
+| Sprint | Sprint 1 (27 Oct – 31 Oct 2026) |
+| Assigned to | Dilipan Y (PES1UG24AM092) |
+| Verified by | {{TC-SEC-02}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/10 |
+
+h3. Acceptance criteria
+* Missing, tampered, {{alg=none}}, expired or foreign-key tokens return 401
+* A disabled account's token returns 401 immediately
+* An employee calling {{/api/v1/admin/*}} or asset endpoints receives 403
+* Tokens expire after 15 minutes and issuer/audience are validated
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-SEC-02 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",High,8,ITIM Sprint 1,Dilipan Y,,Security,epic-security,SP-8,sprint-1
+19,Story,[US-19] Encrypt and mask licence product keys,"*As a* Compliance Auditor, *I want to* product keys stored with AES-256-GCM and shown only in masked form, *so that* a database leak does not hand over usable licence keys.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-19 |
+| Epic | Security |
+| SRS requirement | {{PRJ-SR-003}} |
+| Story points | 5 |
+| Sprint | Sprint 1 (27 Oct – 31 Oct 2026) |
+| Assigned to | Dilipan Y (PES1UG24AM092) |
+| Verified by | {{TC-SEC-03}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/11 |
+
+h3. Acceptance criteria
+* Non-admin responses contain only {{XXXX-XXXX-XXXX-WXYZ}}
+* IT Administrators get 403 on the reveal endpoint; Super Administrators get the key
+* Each reveal writes a {{LICENSE_KEY_REVEALED}} audit entry
+* Stored data contains no plaintext key and modified ciphertext fails to decrypt
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-SEC-03 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",High,5,ITIM Sprint 1,Dilipan Y,,Security,epic-security,SP-5,sprint-1
+20,Story,[US-20] Validate input and send hardening headers,"*As a* Information Security Officer, *I want to* every request body checked against a strict schema and every response hardened, *so that* injection and traversal attacks fail before they reach the data.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-20 |
+| Epic | Security |
+| SRS requirement | {{PRJ-SR-004}} |
+| Story points | 5 |
+| Sprint | Sprint 1 (27 Oct – 31 Oct 2026) |
+| Assigned to | Dhruv Rajagopalan (PES1UG24AM086) |
+| Verified by | {{TC-SEC-04}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/12 |
+
+h3. Acceptance criteria
+* Unknown fields and {{__proto__}} return 400; markup in asset tags returns 400
+* Non-JSON returns 415, malformed JSON 400, bodies over 100 KB return 413
+* Responses carry CSP, {{nosniff}} and {{X-Frame-Options: DENY}}
+* Path traversal returns 404 and injection strings are rendered literally
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-SEC-04 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",High,5,ITIM Sprint 1,Dhruv Rajagopalan,,Security,epic-security,SP-5,sprint-1
+21,Story,[US-23] Expose health probes and shut down gracefully,"*As a* IT Operations Engineer, *I want to* liveness and readiness probes and a clean shutdown path, *so that* the service can be monitored and restarted without losing requests.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-23 |
+| Epic | Non-Functional Targets |
+| SRS requirement | {{IT-NF-002}} |
+| Story points | 3 |
+| Sprint | Sprint 1 (27 Oct – 31 Oct 2026) |
+| Assigned to | Dhruv Rajagopalan (PES1UG24AM086) |
+| Verified by | {{TC-REL-01}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/13 |
+
+h3. Acceptance criteria
+* Probes answer 200 in under 100 ms
+* An unexpected handler error returns 500 without internal detail and the server keeps serving
+* In-flight requests finish during shutdown
+* SIGTERM persists data and exits with code 0 within 5 s
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-REL-01 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",Medium,3,ITIM Sprint 1,Dhruv Rajagopalan,,Non-Functional Targets,epic-nfr,SP-3,sprint-1
+22,Story,[US-25] Record every change in a hash-chained audit trail,"*As a* Compliance Auditor, *I want to* an append-only audit trail chained with SHA-256 hashes, *so that* we can prove to an auditor that no record was altered after the fact.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-25 |
+| Epic | Non-Functional Targets |
+| SRS requirement | {{IT-NF-004}} |
+| Story points | 8 |
+| Sprint | Sprint 1 (27 Oct – 31 Oct 2026) |
+| Assigned to | Sunay R Hegde (PES1UG24AM903) |
+| Verified by | {{TC-AUDIT-01}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/14 |
+
+h3. Acceptance criteria
+* Every state change records actor, role, IP, timestamp, action and entity
+* No API modifies or deletes audit entries (405)
+* Editing, re-hashing or deleting an entry in the stored file is detected by verification
+* Audit entries are included in every backup
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-AUDIT-01 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",High,8,ITIM Sprint 1,Sunay R Hegde,,Non-Functional Targets,epic-nfr,SP-8,sprint-1
+23,Task,[US-28] CI/CD pipeline for every push and pull request,"*As a* Team Lead, *I want to* a pipeline that lints, scans, tests, builds and deploys to staging, *so that* nothing reaches {{main}} without automated proof that it works.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-28 |
+| Epic | Engineering Infrastructure |
+| SRS requirement | Process / engineering task |
+| Story points | 5 |
+| Sprint | Sprint 1 (27 Oct – 31 Oct 2026) |
+| Assigned to | Dilipan Y (PES1UG24AM092) |
+| Verified by | Manual review at sprint demo |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/15 |
+
+h3. Acceptance criteria
+* Pipeline runs on push, pull request and manual dispatch
+* Stages: lint + docs integrity → security audit/SAST → test matrix → build → staging deploy + smoke
+* A failing stage blocks the merge
+* Every PR shows its check result before review
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",High,5,ITIM Sprint 1,Dilipan Y,,Engineering Infrastructure,epic-devops,SP-5,sprint-1
+24,Task,[US-29] Record the Sprint-1 demo video,"*As a* Team Lead, *I want to* a one-minute recording of the working product at the end of Sprint 1, *so that* the deliverable required for the Sprint-1 review is in the repo.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-29 |
+| Epic | Engineering Infrastructure |
+| SRS requirement | Process / engineering task |
+| Story points | 2 |
+| Sprint | Sprint 1 (27 Oct – 31 Oct 2026) |
+| Assigned to | Gaurav Girish (PES1UG24AM103) |
+| Verified by | Manual review at sprint demo |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/16 |
+
+h3. Acceptance criteria
+* Video shows a working product, not slides
+* Covers register → check-out → licence allocation on the running service
+* Uploaded to the repository and linked from the README
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",Medium,2,ITIM Sprint 1,Gaurav Girish,,Engineering Infrastructure,epic-devops,SP-2,sprint-1
+25,Story,[US-07] Ingest endpoint manifests and reconcile installs,"*As a* Compliance Auditor, *I want to* agents to report installed software and have it matched against entitlements, *so that* we know what is actually installed, not just what we bought.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-07 |
+| Epic | Software Licence Management |
+| SRS requirement | {{IT-F-007}} |
+| Story points | 8 |
+| Sprint | Sprint 2 (2 Nov – 7 Nov 2026) |
+| Assigned to | Sunay R Hegde (PES1UG24AM903) |
+| Verified by | {{TC-SAM-03}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/17 |
+
+h3. Acceptance criteria
+* A valid manifest returns 200 with the matched asset and reconciles in the same request
+* Duplicate entries are collapsed
+* An unregistered device returns 404
+* A missing or wrong agent key returns 401
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-SAM-03 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",High,8,ITIM Sprint 2,Sunay R Hegde,,Software Licence Management,epic-licensing,SP-8,sprint-2
+26,Story,[US-08] Detect blacklisted software,"*As a* Information Security Officer, *I want to* prohibited programs flagged as soon as they appear in a manifest, *so that* risky software is found before it causes an incident.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-08 |
+| Epic | Software Licence Management |
+| SRS requirement | {{IT-F-008}} |
+| Story points | 5 |
+| Sprint | Sprint 2 (2 Nov – 7 Nov 2026) |
+| Assigned to | Sunay R Hegde (PES1UG24AM903) |
+| Verified by | {{TC-SAM-04}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/18 |
+
+h3. Acceptance criteria
+* A manifest containing {{BitTorrent.exe}} or {{XMRig}} creates one HIGH incident per program
+* Matching ignores case and the {{.exe}} suffix
+* An already-open incident is not duplicated
+* Administrators can extend the blacklist and resolve incidents
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-SAM-04 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",High,5,ITIM Sprint 2,Sunay R Hegde,,Software Licence Management,epic-licensing,SP-5,sprint-2
+27,Story,[US-10] Route requisitions through a three-tier approval chain,"*As a* IT Director, *I want to* each requisition approved by Manager, IT Director and Finance in order, *so that* spending is controlled and separation of duties is enforced.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-10 |
+| Epic | Procurement Workflow |
+| SRS requirement | {{IT-F-010}} |
+| Story points | 8 |
+| Sprint | Sprint 2 (2 Nov – 7 Nov 2026) |
+| Assigned to | Dhruv Rajagopalan (PES1UG24AM086) |
+| Verified by | {{TC-PROC-02}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/19 |
+
+h3. Acceptance criteria
+* Each stage accepts only its own role (403 otherwise)
+* State reaches {{APPROVED}} only after all three approvals
+* Requesters cannot approve their own requisition and nobody approves twice
+* A rejected requisition cannot subsequently be approved
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-PROC-02 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",High,8,ITIM Sprint 2,Dhruv Rajagopalan,,Procurement Workflow,epic-procurement,SP-8,sprint-2
+28,Story,[US-11] Issue purchase orders and onboard deliveries,"*As a* Finance Officer, *I want to* issue a PO for an approved requisition and onboard the goods on delivery, *so that* delivered items appear in the asset register without re-keying.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-11 |
+| Epic | Procurement Workflow |
+| SRS requirement | {{IT-F-011}} |
+| Story points | 5 |
+| Sprint | Sprint 2 (2 Nov – 7 Nov 2026) |
+| Assigned to | Dhruv Rajagopalan (PES1UG24AM086) |
+| Verified by | {{TC-PROC-03}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/20 |
+
+h3. Acceptance criteria
+* A PO {{PO-YYYY-NNNN}} is issued only for {{APPROVED}} requisitions, and only once
+* Delivering hardware creates one {{AVAILABLE}} asset per serial number, linked to the PO
+* Delivering software creates a licence pool with the purchased seats
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-PROC-03 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",High,5,ITIM Sprint 2,Dhruv Rajagopalan,,Procurement Workflow,epic-procurement,SP-5,sprint-2
+29,Story,[US-12] Alert on under-licensing,"*As a* Compliance Lead, *I want to* a high-severity alert when installations exceed purchased seats, *so that* we can close a licence gap before an audit finds it.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-12 |
+| Epic | Compliance, Audit and Alerts |
+| SRS requirement | {{IT-F-012}} |
+| Story points | 5 |
+| Sprint | Sprint 2 (2 Nov – 7 Nov 2026) |
+| Assigned to | Gaurav Girish (PES1UG24AM103) |
+| Verified by | {{TC-AUD-01}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/21 |
+
+h3. Acceptance criteria
+* Three installs against two seats produce exactly one HIGH {{LICENSE_BREACH}} notification with deficit 1
+* An audit entry is written alongside the notification
+* Re-running reconciliation with no change raises nothing new
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-AUD-01 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",High,5,ITIM Sprint 2,Gaurav Girish,,"Compliance, Audit and Alerts",epic-compliance,SP-5,sprint-2
+30,Story,"[US-13] Raise expiry alerts at 60, 30 and 7 days","*As a* IT Operations Engineer, *I want to* warnings before each licence and warranty expires, *so that* renewals happen before cover lapses.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-13 |
+| Epic | Compliance, Audit and Alerts |
+| SRS requirement | {{IT-F-013}} |
+| Story points | 5 |
+| Sprint | Sprint 2 (2 Nov – 7 Nov 2026) |
+| Assigned to | Dilipan Y (PES1UG24AM092) |
+| Verified by | {{TC-AUD-02}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/22 |
+
+h3. Acceptance criteria
+* For an item expiring 31-12-2026, checks on 01-11, 05-12 and 26-12 raise one LOW, MEDIUM and HIGH alert
+* A repeat check raises nothing
+* A check on 02-01-2027 raises an EXPIRED notification
+* Runs both as a daily job and on demand
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-AUD-02 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",High,5,ITIM Sprint 2,Dilipan Y,,"Compliance, Audit and Alerts",epic-compliance,SP-5,sprint-2
+31,Story,[US-14] Generate compliance reports (JSON and CSV),"*As a* Compliance Auditor, *I want to* an on-demand report of assets, seats, incidents and audit-chain status, *so that* I can hand an auditor a single verifiable document.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-14 |
+| Epic | Compliance, Audit and Alerts |
+| SRS requirement | {{IT-F-014}} |
+| Story points | 5 |
+| Sprint | Sprint 2 (2 Nov – 7 Nov 2026) |
+| Assigned to | Sunay R Hegde (PES1UG24AM903) |
+| Verified by | {{TC-AUD-03}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/23 |
+
+h3. Acceptance criteria
+* The JSON report shows the correct deficit and unallocated installs
+* {{contentSha256}} matches the report content
+* The CSV is downloadable, carries the hash in a header and neutralises spreadsheet formulas
+* Employees receive 403
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-AUD-03 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",High,5,ITIM Sprint 2,Sunay R Hegde,,"Compliance, Audit and Alerts",epic-compliance,SP-5,sprint-2
+32,Story,[US-16] Decommission an asset and reclaim its seats,"*As a* IT Administrator, *I want to* retire an asset with a sanitisation certificate and free its licences, *so that* disposal is provably compliant and paid-for seats are not stranded.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-16 |
+| Epic | Maintenance and Decommissioning |
+| SRS requirement | {{IT-F-016}} |
+| Story points | 5 |
+| Sprint | Sprint 2 (2 Nov – 7 Nov 2026) |
+| Assigned to | Gaurav Girish (PES1UG24AM103) |
+| Verified by | {{TC-MAINT-02}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/24 |
+
+h3. Acceptance criteria
+* Decommissioning without a NIST SP 800-88 certificate returns 400
+* Decommissioning an in-use asset returns 409; a technician attempting it gets 403
+* On success status is {{DECOMMISSIONED}} and every seat held is reclaimed
+* Further check-out, allocation or telemetry returns 409
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-MAINT-02 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",High,5,ITIM Sprint 2,Gaurav Girish,,Maintenance and Decommissioning,epic-maintenance,SP-5,sprint-2
+33,Story,[US-21] Lock accounts and rate-limit after failed logins,"*As a* Information Security Officer, *I want to* an account locked after repeated failed logins and per-client API limits, *so that* brute-force attempts are stopped rather than merely logged.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-21 |
+| Epic | Security |
+| SRS requirement | {{PRJ-SR-005}} |
+| Story points | 5 |
+| Sprint | Sprint 2 (2 Nov – 7 Nov 2026) |
+| Assigned to | Dilipan Y (PES1UG24AM092) |
+| Verified by | {{TC-SEC-05}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/25 |
+
+h3. Acceptance criteria
+* The 6th failed attempt within a minute returns 429 even with the correct password
+* An IP is locked after 20 failures; other accounts are unaffected
+* The lockout is audited and ends after 15 minutes
+* Exceeding the API request limit returns 429 with {{Retry-After}}
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-SEC-05 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",High,5,ITIM Sprint 2,Dilipan Y,,Security,epic-security,SP-5,sprint-2
+34,Story,[US-22] Meet the p95 latency target,"*As a* IT Operations Engineer, *I want to* the API to answer a mixed workload from 50 concurrent clients within 300 ms at p95, *so that* the dashboard stays responsive when the whole department is using it.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-22 |
+| Epic | Non-Functional Targets |
+| SRS requirement | {{IT-NF-001}} |
+| Story points | 5 |
+| Sprint | Sprint 2 (2 Nov – 7 Nov 2026) |
+| Assigned to | Dhruv Rajagopalan (PES1UG24AM086) |
+| Verified by | {{TC-PERF-01}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/26 |
+
+h3. Acceptance criteria
+* 1,000 requests (50% reads, 20% filtered searches, 30% creates) complete with no errors
+* p95 latency is at most 300 ms on the CI runner
+* Measured values are printed in the CI logs
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-PERF-01 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",High,5,ITIM Sprint 2,Dhruv Rajagopalan,,Non-Functional Targets,epic-nfr,SP-5,sprint-2
+35,Story,[US-24] Hold 50k assets and 100k seats within query budgets,"*As a* IT Operations Engineer, *I want to* the store to stay fast at full organisational scale, *so that* performance does not fall away as the estate grows.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-24 |
+| Epic | Non-Functional Targets |
+| SRS requirement | {{IT-NF-003}} |
+| Story points | 5 |
+| Sprint | Sprint 2 (2 Nov – 7 Nov 2026) |
+| Assigned to | Dilipan Y (PES1UG24AM092) |
+| Verified by | {{TC-SCALE-01}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/27 |
+
+h3. Acceptance criteria
+* Indexed lookup by tag or ID under 100 ms
+* Filtered, paginated search under 1 s
+* Full compliance report under 5 s
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-SCALE-01 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",High,5,ITIM Sprint 2,Dilipan Y,,Non-Functional Targets,epic-nfr,SP-5,sprint-2
+36,Story,[US-26] Meet WCAG 2.1 AA on the dashboard,"*As a* Employee using assistive technology, *I want to* the dashboard to meet WCAG 2.1 Level AA, *so that* everyone in the organisation can use it.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-26 |
+| Epic | Non-Functional Targets |
+| SRS requirement | {{IT-NF-005}} |
+| Story points | 5 |
+| Sprint | Sprint 2 (2 Nov – 7 Nov 2026) |
+| Assigned to | Gaurav Girish (PES1UG24AM103) |
+| Verified by | {{TC-UX-01}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/28 |
+
+h3. Acceptance criteria
+* Page language, form labels, skip link, main landmark and live status region present
+* Table captions and header scopes correct, heading order valid
+* No inline script or style; text contrast at least 4.5:1 in light and dark themes
+* Focus indicator visible throughout
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-UX-01 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",High,5,ITIM Sprint 2,Gaurav Girish,,Non-Functional Targets,epic-nfr,SP-5,sprint-2
+37,Story,[US-27] Recover from crash or data loss within RPO/RTO,"*As a* IT Operations Engineer, *I want to* encrypted backups and a verified restore path, *so that* an outage costs at most a second of data and two hours of downtime.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-27 |
+| Epic | Non-Functional Targets |
+| SRS requirement | {{IT-NF-006}} |
+| Story points | 5 |
+| Sprint | Sprint 2 (2 Nov – 7 Nov 2026) |
+| Assigned to | Dilipan Y (PES1UG24AM092) |
+| Verified by | {{TC-DR-01}} |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/29 |
+
+h3. Acceptance criteria
+* Changes reach the snapshot within 200 ms
+* After an unclean stop a restarted instance has every acknowledged write
+* Encrypted backups restore with checksum verification well inside the RTO
+* Tampered backups or a wrong key are refused
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Automated test TC-DR-01 passing
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",High,5,ITIM Sprint 2,Dilipan Y,,Non-Functional Targets,epic-nfr,SP-5,sprint-2
+38,Task,[US-30] Record the Sprint-2 demo and freeze the documentation,"*As a* Team Lead, *I want to* a two-minute recording of the finished product and the documents brought up to date, *so that* the final deliverables are complete and the development cycle can be frozen.
+
+h3. Backlog details
+|| Field || Value ||
+| Story ID | US-30 |
+| Epic | Engineering Infrastructure |
+| SRS requirement | Process / engineering task |
+| Story points | 2 |
+| Sprint | Sprint 2 (2 Nov – 7 Nov 2026) |
+| Assigned to | Gaurav Girish (PES1UG24AM103) |
+| Verified by | Manual review at sprint demo |
+| GitHub issue | https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues/30 |
+
+h3. Acceptance criteria
+* Video shows a working product covering the Sprint-2 scope
+* SRS, SAD and Test Plan updated with any deviations and the reasons for them
+* Video uploaded to the repository and linked from the README
+* Development cycle frozen after the recording
+
+h3. Definition of Done
+* Work done on a feature branch, never committed straight to main
+* Pull request raised by the assignee and reviewed by a repo owner
+* All five CI/CD stages green on the PR
+* Traceability still correct in the SRS and Test Plan
+* Issue moved to Done on the board",Medium,2,ITIM Sprint 2,Gaurav Girish,,Engineering Infrastructure,epic-devops,SP-2,sprint-2
