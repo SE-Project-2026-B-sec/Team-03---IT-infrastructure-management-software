@@ -12,9 +12,9 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 // Line endings are normalised so a Windows checkout (CRLF) parses identically.
 const read = (rel) => fs.readFileSync(path.join(root, rel), 'utf8').replace(/\r\n/g, '\n');
-const SRS = read('docs/SRS_IT_Infrastructure_Management.md');
-const SAD = read('docs/SAD_IT_Infrastructure_Management.md');
-const STP = read('docs/Test_Plan_IT_Infrastructure_Management.md');
+const SRS = read('docs/source/SRS_IT_Infrastructure_Management.md');
+const SAD = read('docs/source/SAD_IT_Infrastructure_Management.md');
+const STP = read('docs/source/Test_Plan_IT_Infrastructure_Management.md');
 
 const problems = [];
 const fail = (msg) => problems.push(msg);

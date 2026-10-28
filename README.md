@@ -22,9 +22,11 @@ A web-based system for an IT department to manage hardware assets, software lice
 
 | Document | Contents |
 | :--- | :--- |
-| [Software Requirements Specification](docs/SRS_IT_Infrastructure_Management.md) | 16 functional, 6 non-functional and 5 security requirements, 4 security objectives, 2 use-case diagrams, traceability matrix |
-| [Software Architecture and Design](docs/SAD_IT_Infrastructure_Management.md) | Class and module diagrams, architecture decisions, STRIDE threat model, 3 sequence diagrams, REST API with real request/response examples |
-| [Software Test Plan](docs/Test_Plan_IT_Infrastructure_Management.md) | Strategy, entry/exit criteria, 27 test cases mapped to every requirement |
+| [Software Requirements Specification](docs/SRS_IT_Infrastructure_Management.docx) | 16 functional, 6 non-functional and 5 security requirements, 4 security objectives, 2 use-case diagrams, traceability matrix |
+| [Software Architecture and Design](docs/SAD_IT_Infrastructure_Management.docx) | Class and module diagrams, architecture decisions, STRIDE threat model, 3 sequence diagrams, REST API with real request/response examples |
+| [Software Test Plan](docs/Test_Plan_IT_Infrastructure_Management.docx) | Strategy, entry/exit criteria, 27 test cases mapped to every requirement |
+
+The three documents above are the submission copies, in the prescribed Word format. Their editable Markdown source lives in [`docs/source/`](docs/source) and is what the traceability check parses.
 
 Traceability is enforced, not just documented: `npm run check:docs` fails if any requirement lacks a design spec or test case, or any test case lacks an automated test.
 

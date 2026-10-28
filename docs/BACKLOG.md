@@ -5,7 +5,7 @@
 **Backlog baselined:** 28-10-2026  
 **Tracked in:** [GitHub Issues](https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues), [Milestones](https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/milestones) and the [Team-03 ITIM Sprint Board](https://github.com/users/gaurav-2030/projects/1) (Story Points, Sprint and Epic fields set on all 30 items)
 
-Every story below maps to a requirement in the [SRS](SRS_IT_Infrastructure_Management.md) and is verified by a test case in the [Test Plan](Test_Plan_IT_Infrastructure_Management.md). All 27 SRS requirements (16 functional, 6 non-functional, 5 security) are covered.
+Every story below maps to a requirement in the [SRS](SRS_IT_Infrastructure_Management.docx) and is verified by a test case in the [Test Plan](Test_Plan_IT_Infrastructure_Management.docx). All 27 SRS requirements (16 functional, 6 non-functional, 5 security) are covered.
 
 ---
 
