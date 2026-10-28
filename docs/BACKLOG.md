@@ -105,3 +105,16 @@ Every story below maps to a requirement in the [SRS](SRS_IT_Infrastructure_Manag
 | 5 | Multi-part feature with edge cases, one to two days |
 | 8 | Complex feature: concurrency, workflow state or cryptography, two to three days |
 
+## 8. Jira
+
+The same 30 stories and 8 epics are provided as [`jira-import.csv`](jira-import.csv) for Jira's **Import issues from CSV** wizard (Project settings -> Import). The file carries issue type, summary, description in wiki markup, priority, story points, sprint, assignee, epic link and labels, and each story links back to its GitHub issue.
+
+During the import map the columns as follows, then confirm the sprint and story-point fields exist on the board:
+
+| CSV column | Jira field |
+| :--- | :--- |
+| Story Points | Story point estimate |
+| Sprint | Sprint |
+| Epic Link | Parent (or Epic Link on company-managed projects) |
+| Assignee | Assignee — match each name to the team member's Atlassian account |
+
