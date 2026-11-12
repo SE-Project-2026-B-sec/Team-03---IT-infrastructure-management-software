@@ -242,6 +242,13 @@ async function main() {
 if (require.main === module) {
   main().catch((err) => {
     process.stderr.write(`Demo failed to start: ${err.message}\n`);
+    if (err.code === 'EADDRINUSE') {
+      process.stderr.write(
+        `Port ${err.port} is already taken, usually by a demo left running in another terminal.\n` +
+        'Either stop that one (Ctrl+C in its window), or start this one on a free port:\n' +
+        '  PORT=3001 npm run demo\n'
+      );
+    }
     process.exit(1);
   });
 }

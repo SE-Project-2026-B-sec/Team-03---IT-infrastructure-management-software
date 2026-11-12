@@ -196,11 +196,26 @@
     }
     const data = await res.json().catch(() => ({}));
     if (!res.ok) {
-      const err = new Error(Array.isArray(data.errors) ? data.errors.join('. ') : data.detail || `Request failed (${res.status})`);
+      const err = new Error(Array.isArray(data.errors) ? data.errors.map(humanizeFieldError).join('. ') : data.detail || `Request failed (${res.status})`);
       err.status = res.status;
       throw err;
     }
     return data;
+  }
+
+  /**
+   * Validation errors name the API field ("businessJustification must be at
+   * least 10 characters"). Spell that out as words so the message reads the
+   * way the form label does.
+   */
+  function humanizeFieldError(message) {
+    const text = String(message);
+    const end = text.indexOf(' ');
+    if (end <= 0) return text;
+    const head = text.slice(0, end);
+    if (!/^[a-z][A-Za-z0-9.]*$/.test(head)) return text;
+    const words = head.replace(/\./g, ' ').replace(/([a-z0-9])([A-Z])/g, '$1 $2').toLowerCase();
+    return words.charAt(0).toUpperCase() + words.slice(1) + text.slice(end);
   }
 
   function toast(message, tone) {
@@ -1271,6 +1286,12 @@
 
   function route() {
     if (!state.user) return;
+    // A hash change (browser back/forward, or an edited URL) must not leave the
+    // asset drawer or a form dialog floating above the newly selected view.
+    state.drawerOpener = null;
+    for (const dialog of [$('drawer'), $('modal')]) {
+      if (dialog.open) dialog.close();
+    }
     let name = viewFromHash();
     if (!VIEWS[name] || !VIEWS[name].allowed()) name = 'overview';
     const changed = state.view !== name;
