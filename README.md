@@ -28,6 +28,15 @@ A web-based system for an IT department to manage hardware assets, software lice
 
 The three documents above are the submission copies, in the prescribed Word format. Their editable Markdown source lives in [`docs/source/`](docs/source) and is what the traceability check parses.
 
+### Agile process evidence
+
+| Artefact | Where |
+| :--- | :--- |
+| Product backlog and sprint plan (30 stories, 147 story points, 2 sprints) | [`docs/BACKLOG.md`](docs/BACKLOG.md) |
+| **Jira screenshots**: dashboard, product backlog, sprint backlogs, sprint progress, burndown charts | [`docs/jira/`](docs/jira/README.md) |
+| GitHub issues, milestones and project board | [Issues](https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues) · [Milestones](https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/milestones) · [Sprint board](https://github.com/users/gaurav-2030/projects/1) |
+| Jira CSV import of the same backlog | [`docs/jira-import.csv`](docs/jira-import.csv) |
+
 Traceability is enforced, not just documented: `npm run check:docs` fails if any requirement lacks a design spec or test case, or any test case lacks an automated test.
 
 ## Quick start

@@ -107,6 +107,8 @@ Every story below maps to a requirement in the [SRS](SRS_IT_Infrastructure_Manag
 
 ## 8. Jira
 
+The backlog is also run in the Jira Software project **Team-03 ITIM** (key `ITIM`, Scrum board). The dashboard, product backlog, sprint backlogs, sprint progress and burndown screenshots are in [`docs/jira/`](jira/README.md).
+
 The same 30 stories and 8 epics are provided as [`jira-import.csv`](jira-import.csv) for Jira's **Import issues from CSV** wizard (Project settings -> Import). The file carries issue type, summary, description in wiki markup, priority, story points, sprint, assignee, epic link and labels, and each story links back to its GitHub issue.
 
 During the import map the columns as follows, then confirm the sprint and story-point fields exist on the board:
