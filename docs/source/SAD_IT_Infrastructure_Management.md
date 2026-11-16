@@ -1,10 +1,10 @@
 # Software Architecture and Design Specification (SAD)
 
 **Project:** IT Infrastructure Management Software
-**Version:** 2.0
+**Version:** 2.1
 **Authors:** Team 03 (SE Project 2026, Section B)
-**Date:** 22-10-2026
-**Status:** Baseline for evaluation
+**Date:** 16-11-2026
+**Status:** Frozen for final submission
 **Repository:** [SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software](https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software)
 
 ### Revision History
@@ -13,6 +13,7 @@
 | :--- | :--- | :--- | :--- |
 | 1.0 | 22-10-2026 | Team 03 | Initial architecture draft |
 | 2.0 | 22-10-2026 | Team 03 | Architecture rewritten to describe the implemented system; design spec IDs added for traceability; API examples taken from the running service |
+| 2.1 | 16-11-2026 | Team 03 | Documentation freeze: deviations from the submitted design and plan recorded in Section 4.7 |
 
 ### Approvals
 
@@ -764,6 +765,31 @@ Errors: `403` wrong role for the stage (`"This stage requires the MANAGER role"`
 - PDF export of the compliance report.
 - PostgreSQL implementation of the `Store` interface for multi-node deployments.
 - Periodic external anchoring of the audit head hash (for example in a write-once store).
+
+### 4.7 Deviations from the submitted design and plan
+
+Recorded at the documentation freeze on 16-11-2026. The architecture, components, data model and API in Sections 3 and 4 match the delivered system; the items below are where the delivery differs from what this document or the plan implied.
+
+**Process**
+
+| # | Deviation | Detail |
+| ---: | :--- | :--- |
+| 1 | Sprint tracking tool | Sprint planning and tracking were done in GitHub Issues, Milestones and a GitHub project board. The Jira project *Team-03 ITIM* was set up on 16-11-2026 from the same 30-story backlog, and Sprint 1 and Sprint 2 were run in Jira on that day, so the Jira burndown charts carry that date. Screenshots and an explanation are in `docs/jira/`. |
+| 2 | Sprint calendar | The course brief set Sprint 1 to 19–23 Oct and Sprint 2 to 26–30 Oct, and the backlog baselined on 28-10-2026 used 27–31 Oct and 2–7 Nov. The implementation itself was committed as one baseline (v1.0) on 22-10-2026; later commits were documentation and fixes. |
+| 3 | Pull-request workflow | The working agreement in `docs/BACKLOG.md` asks for one branch per story, a pull request raised by the assignee and a merge by a repo owner. In practice the code was committed from one account, and the later documentation pull requests (#31–#33) were raised and merged by the same account. The CI/CD pipeline ran on every push and pull request. |
+| 4 | Jira accounts | Only one team member's Atlassian account is on the Jira site, so the other members' stories show as unassigned there. Each story's owner is recorded in an `owner-<name>` label and in its description, and on the GitHub issues as the assignee. |
+| 5 | Demo videos | Both sprint demo videos were recorded on 16-11-2026 from the running product (`npm run demo`) with on-screen captions instead of a voice-over: `docs/demo/sprint1-demo.mp4` and `docs/demo/sprint2-demo.mp4`. |
+
+**Product**
+
+In Sequence Diagram 1 the seat-allocation step is made by an API client, not from the dashboard.
+
+| # | Deviation | Detail |
+| ---: | :--- | :--- |
+| 1 | IT-F-006 and IT-F-016 have no dashboard action | Licence seat allocation and reclaim (IT-F-006) and decommissioning (IT-F-016) are implemented in the services and exposed through the REST API, and are verified by TC-SAM-02 and TC-MAINT-02. The dashboard shows their results (seat meters, the decommissioning certificate on the asset) but has no button to allocate, reclaim or decommission; these are done through the API, as shown in the demo videos. |
+| 2 | PRJ-SR-001 in the local demo | The service enforces TLS 1.3 when `TLS_CERT_FILE` and `TLS_KEY_FILE` are configured, which TC-SEC-01 verifies. The local demo (`npm run demo`) has no certificate configured and runs over plain HTTP on localhost. |
+
+**Development freeze.** Development is frozen as of 16-11-2026 at the `main` branch of the [repository](https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software). The latest CI run on `main` (the merge of pull request #33 on 16-11-2026) passed all five stages, including the staging deployment and smoke test, with 34 of 34 automated tests passing on Node.js 18, 20 and 22.
 
 ---
 

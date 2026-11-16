@@ -1,10 +1,10 @@
 # Software Test Plan (STP)
 
 **Project:** IT Infrastructure Management Software
-**Version:** 2.0
+**Version:** 2.1
 **Authors:** Team 03 QA (SE Project 2026, Section B)
-**Date:** 22-10-2026
-**Status:** Baseline for evaluation
+**Date:** 16-11-2026
+**Status:** Frozen for final submission
 **Repository:** [SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software](https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software)
 
 ---
@@ -266,11 +266,45 @@ Each test case has one or more automated tests whose names begin with the test c
 - Every CI run: per-Node-version TAP results and coverage output as artifacts, and a summary table in the GitHub Actions job summary generated from the real results.
 - Final Test Summary Report at the end of UAT.
 
+**Execution record (16-11-2026, CI on pull request #33):** all 34 automated tests passed on Node.js 18, 20 and 22, and every pipeline stage (lint and documentation integrity, security audit and SAST, tests, build) passed; the staging smoke test runs on pushes to `main`.
+
 **Execution record (22-10-2026, local):** all 27 test cases (34 automated tests, including the demo-data test) passed on Node.js 18, 20 and 22; lint, SAST, dependency audit and documentation integrity checks passed; the build and the staging smoke test passed against the packaged build.
 
 ---
 
-## 15. Approvals
+## 15. Deviations from the plan
+
+Recorded at the documentation freeze on 16-11-2026. The test cases in Section 13 are unchanged and all pass.
+
+**Process**
+
+| # | Deviation | Detail |
+| ---: | :--- | :--- |
+| 1 | Sprint tracking tool | Sprint planning and tracking were done in GitHub Issues, Milestones and a GitHub project board. The Jira project *Team-03 ITIM* was set up on 16-11-2026 from the same 30-story backlog, and Sprint 1 and Sprint 2 were run in Jira on that day, so the Jira burndown charts carry that date. Screenshots and an explanation are in `docs/jira/`. |
+| 2 | Sprint calendar | The course brief set Sprint 1 to 19–23 Oct and Sprint 2 to 26–30 Oct, and the backlog baselined on 28-10-2026 used 27–31 Oct and 2–7 Nov. The implementation itself was committed as one baseline (v1.0) on 22-10-2026; later commits were documentation and fixes. |
+| 3 | Pull-request workflow | The working agreement in `docs/BACKLOG.md` asks for one branch per story, a pull request raised by the assignee and a merge by a repo owner. In practice the code was committed from one account, and the later documentation pull requests (#31–#33) were raised and merged by the same account. The CI/CD pipeline ran on every push and pull request. |
+| 4 | Jira accounts | Only one team member's Atlassian account is on the Jira site, so the other members' stories show as unassigned there. Each story's owner is recorded in an `owner-<name>` label and in its description, and on the GitHub issues as the assignee. |
+| 5 | Demo videos | Both sprint demo videos were recorded on 16-11-2026 from the running product (`npm run demo`) with on-screen captions instead of a voice-over: `docs/demo/sprint1-demo.mp4` and `docs/demo/sprint2-demo.mp4`. |
+
+**Product**
+
+| # | Deviation | Detail |
+| ---: | :--- | :--- |
+| 1 | IT-F-006 and IT-F-016 have no dashboard action | Licence seat allocation and reclaim (IT-F-006) and decommissioning (IT-F-016) are implemented in the services and exposed through the REST API, and are verified by TC-SAM-02 and TC-MAINT-02. The dashboard shows their results (seat meters, the decommissioning certificate on the asset) but has no button to allocate, reclaim or decommission; these are done through the API, as shown in the demo videos. |
+| 2 | PRJ-SR-001 in the local demo | The service enforces TLS 1.3 when `TLS_CERT_FILE` and `TLS_KEY_FILE` are configured, which TC-SEC-01 verifies. The local demo (`npm run demo`) has no certificate configured and runs over plain HTTP on localhost. |
+
+**Test schedule**
+
+| # | Deviation | Detail |
+| ---: | :--- | :--- |
+| 1 | UAT walkthrough (27–29 Oct) | No signed acceptance checklist or manual screen-reader review record is stored in the repository. Acceptance evidence is the CI results and the two sprint demo videos in `docs/demo/`. |
+| 2 | Test summary report (30 Oct) | No separate summary report was written. The execution records in Section 14 and the GitHub Actions job summaries serve as the test summary. |
+
+**Development freeze.** Development is frozen as of 16-11-2026 at the `main` branch of the [repository](https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software). The latest CI run on `main` (the merge of pull request #33 on 16-11-2026) passed all five stages, including the staging deployment and smoke test, with 34 of 34 automated tests passing on Node.js 18, 20 and 22.
+
+---
+
+## 16. Approvals
 
 | Role | Name | Signature / Date |
 | :--- | :--- | :--- |
