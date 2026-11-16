@@ -8,7 +8,7 @@ with the same story points, priorities, epics and sprint split.
 | :--- | ---: | ---: |
 | Stories / tasks planned | 16 | 14 (+1 carried over) |
 | Story points planned | 74 | 73 (+2 carried over) |
-| Story points completed | 72 | 71 (US-29 and US-30 still open) |
+| Story points completed | 72 | 75 of 75, including the carried-over US-29 |
 | Carried over | US-29 Sprint-1 demo video (2 SP) | — |
 
 ## 1. Jira dashboard
@@ -49,8 +49,13 @@ Both sprints planned in the backlog with story points, epics and priorities, bef
 ![Sprint 2 burndown chart](11-sprint2-burndown-chart.jpg)
 ![Sprint 2 sprint report](12-sprint2-sprint-report.jpg)
 
+Sprint 2 after the demo videos were recorded and the documents frozen (US-29 and US-30 done; sprint closed 16-11-2026, 22:34):
+
+![Sprint 2 burndown chart, final](16-sprint2-burndown-final.jpg)
+![Sprint 2 sprint report, closed](17-sprint2-sprint-report-final.jpg)
+
 ## 6. Deviation from the plan (to explain at the final demo)
 
 - **Jira was set up late.** During development the backlog and sprints were tracked in [GitHub Issues](https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues), [Milestones](https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/milestones) and the [GitHub project board](https://github.com/users/gaurav-2030/projects/1). The Jira project was created on **16 Nov 2026** from the same backlog (`docs/jira-import.csv`). Sprint 1 and Sprint 2 were then run in Jira on that day. Each story was moved to Done after the full automated test suite passed (34/34 tests). That is why the burndown charts show times on 16 Nov rather than the planned sprint weeks. The dates were not backdated.
 - **Single Jira account.** Only one team member's Atlassian account is on the Jira site, so the other members' stories show as unassigned. Every story's real owner is recorded in its `owner-<name>` label and in the *Assigned to* row of its description. The same owners are set as assignees on the GitHub issues.
-- **Demo videos.** US-29 (Sprint-1 demo video) was not finished in Sprint 1 and was carried into Sprint 2. Both videos were recorded on 16 Nov 2026 from the running product (`npm run demo`) and are in [`docs/demo/`](../demo): [Sprint 1](../demo/sprint1-demo.mp4) and [Sprint 2](../demo/sprint2-demo.mp4). The burndown screenshots above were taken before the recordings, so they still show US-29 and US-30 as open.
+- **Demo videos.** US-29 (Sprint-1 demo video) was not finished in Sprint 1 and was carried into Sprint 2. Both videos were recorded on 16 Nov 2026 from the running product (`npm run demo`) and are in [`docs/demo/`](../demo): [Sprint 1](../demo/sprint1-demo.mp4) and [Sprint 2](../demo/sprint2-demo.mp4). Screenshots 11 and 12 were taken before the recordings and still show US-29 and US-30 as open; screenshots 16 and 17 show Sprint 2 closed with everything done. The documentation freeze (US-30) is recorded in the SRS, SAD and Test Plan v2.1.
