@@ -36,6 +36,8 @@ The three documents above are the submission copies, in the prescribed Word form
 | **Jira screenshots**: dashboard, product backlog, sprint backlogs, sprint progress, burndown charts | [`docs/jira/`](docs/jira/README.md) |
 | GitHub issues, milestones and project board | [Issues](https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/issues) · [Milestones](https://github.com/SE-Project-2026-B-sec/Team-03---IT-infrastructure-management-software/milestones) · [Sprint board](https://github.com/users/gaurav-2030/projects/1) |
 | Jira CSV import of the same backlog | [`docs/jira-import.csv`](docs/jira-import.csv) |
+| **Sprint 1 demo video** (1 min): JWT sign-in, asset registration, barcode label and scan, depreciation, check-out, licence seat allocation | [`docs/demo/sprint1-demo.mp4`](docs/demo/sprint1-demo.mp4) |
+| **Sprint 2 demo video** (1 min 45 s): three-tier procurement approval, purchase order and delivery, blacklisted-software detection, compliance and audit report, expiry alerts, decommissioning, light/dark theme, login lockout | [`docs/demo/sprint2-demo.mp4`](docs/demo/sprint2-demo.mp4) |
 
 Traceability is enforced, not just documented: `npm run check:docs` fails if any requirement lacks a design spec or test case, or any test case lacks an automated test.
 
